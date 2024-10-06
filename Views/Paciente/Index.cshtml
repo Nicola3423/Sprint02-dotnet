@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Sessions_app.DTOs.PacienteDTO>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Lista de Pacientes";
+}
+
+<h2>Lista de Pacientes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Data de Nascimento</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            foreach (var paciente in Model)
+            {
+                <tr>
+                    <td>@paciente.Nome</td>
+                    <td>@paciente.Email</td>
+                    <td>@paciente.DataNascimento.ToShortDateString()</td>
+                    <td>
+                        <a asp-controller="Paciente" asp-action="Edit" asp-route-id="@paciente.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <form asp-controller="Paciente" asp-action="Delete" asp-route-id="@paciente.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este paciente?');">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">Nenhum paciente encontrado.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Paciente/Create" class="btn btn-primary">Cadastrar Novo Paciente</a>

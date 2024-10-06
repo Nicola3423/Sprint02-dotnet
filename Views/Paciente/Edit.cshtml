@@ -1,0 +1,39 @@
+﻿@model Sessions_app.DTOs.PacienteDTO
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Editar Paciente";
+}
+
+<h2>Editar Paciente</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input type="text" class="form-control" asp-for="Nome" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input type="email" class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataNascimento"></label>
+        <input type="date" class="form-control" asp-for="DataNascimento" />
+        <span asp-validation-for="DataNascimento" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

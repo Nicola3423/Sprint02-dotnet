@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "_Layout";  // Define que a view usará o layout definido
+    ViewData["Title"] = "Página Inicial"; // Define o título da página
+}
+
+<h1>Bem-vindo ao Sistema de Cadastro de Pacientes</h1>
+
+<div class="mt-4">
+    <a asp-controller="Paciente" asp-action="Create" class="btn btn-primary">Cadastrar Novo Paciente</a>
+    <a asp-controller="Paciente" asp-action="Index" class="btn btn-secondary">Ver Pacientes</a>
+</div>

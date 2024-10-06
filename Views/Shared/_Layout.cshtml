@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema de Gerenciamento de Pacientes</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Gerenciamento de Pacientes</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Paciente/Index">Usuários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Paciente/Create">Cadastrar</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        @RenderBody() 
+    </div>
+
+    <footer class="mt-4 text-center">
+        <p>&copy; 2024 - Sistema de Gerenciamento de Pacientes</p>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
