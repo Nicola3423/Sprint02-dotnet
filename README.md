@@ -1,6 +1,3 @@
-# Criar um arquivo README.md atualizado com foco no projeto em C# que está desenvolvendo um CRUD de pacientes
-
-readme_csharp_content = """
 # Aplicativo de Gestão de Pacientes
 
 ## Objetivo do Projeto
