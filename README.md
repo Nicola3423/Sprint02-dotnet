@@ -26,4 +26,4 @@ Este projeto terá as seguintes funcionalidades principais:
 - **Linguagem**: C#
 - **Framework**: .NET
 - **Banco de Dados**: MySQL
-"""
+
