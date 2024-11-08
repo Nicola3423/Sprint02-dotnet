@@ -7,7 +7,7 @@
 
 <h2>Cadastrar Novo Paciente</h2>
 
-<form asp-action="Create" method="post">
+<form asp-action="Create" method="post" class="p-4 border rounded shadow-sm bg-light">
     <div class="form-group">
         <label asp-for="Nome"></label>
         <input type="text" class="form-control" asp-for="Nome" />
@@ -26,8 +26,14 @@
         <span asp-validation-for="DataNascimento" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-check"></i> Cadastrar
+    </button>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
 </form>
+
 
 @section Scripts {
     @{

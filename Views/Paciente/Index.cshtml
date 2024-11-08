@@ -5,11 +5,37 @@
     ViewData["Title"] = "Lista de Pacientes";
 }
 
+<div class="jumbotron text-center bg-primary text-white p-5">
+    <h1 class="display-4">Bem-vindo ao Sistema de Cadastro de Pacientes</h1>
+    <p class="lead">Gerencie seus pacientes de forma simples e rápida.</p>
+    <a asp-controller="Paciente" asp-action="Create" class="btn btn-light btn-lg mx-2">
+        <i class="fas fa-user-plus"></i> Cadastrar Novo Paciente
+    </a>
+    <a asp-controller="Paciente" asp-action="Index" class="btn btn-light btn-lg mx-2">
+        <i class="fas fa-list"></i> Ver Pacientes
+    </a>
+    <a asp-controller="Paciente" asp-action="CuidadosDentais" class="btn btn-info btn-lg mx-2">
+        <i class="fas fa-tooth"></i> Cuidados Dentais
+    </a>
+</div>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-3">Buscar Paciente por ID</h2>
+    <form asp-controller="Paciente" asp-action="SearchById" method="get" class="form-inline justify-content-center">
+        <div class="form-group mb-2">
+            <label for="id" class="sr-only">ID do Paciente</label>
+            <input type="number" id="id" name="id" class="form-control" placeholder="Digite o ID" required />
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar</button>
+    </form>
+</div>
+
 <h2>Lista de Pacientes</h2>
 
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
+            <th>ID</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Data de Nascimento</th>
@@ -22,13 +48,18 @@
             foreach (var paciente in Model)
             {
                 <tr>
+                    <td>@paciente.Id</td> <!-- Exibe o ID do paciente -->
                     <td>@paciente.Nome</td>
                     <td>@paciente.Email</td>
                     <td>@paciente.DataNascimento.ToShortDateString()</td>
                     <td>
-                        <a asp-controller="Paciente" asp-action="Edit" asp-route-id="@paciente.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-controller="Paciente" asp-action="Edit" asp-route-id="@paciente.Id" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
                         <form asp-controller="Paciente" asp-action="Delete" asp-route-id="@paciente.Id" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este paciente?');">Excluir</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este paciente?');">
+                                <i class="fas fa-trash"></i> Excluir
+                            </button>
                         </form>
                     </td>
                 </tr>
@@ -37,10 +68,12 @@
         else
         {
             <tr>
-                <td colspan="4" class="text-center">Nenhum paciente encontrado.</td>
+                <td colspan="5" class="text-center">Nenhum paciente encontrado.</td>
             </tr>
         }
     </tbody>
 </table>
 
-<a href="/Paciente/Create" class="btn btn-primary">Cadastrar Novo Paciente</a>
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+}

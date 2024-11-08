@@ -1,0 +1,26 @@
+﻿@model Sessions_app.DTOs.PacienteDTO
+
+<div class="container mt-4">
+    <h2>Detalhes do Paciente</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <td>@Model.Id</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td>@Model.Nome</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <th>Data de Nascimento</th>
+            <td>@Model.DataNascimento.ToShortDateString()</td>
+        </tr>
+    </table>
+
+    <a asp-controller="Paciente" asp-action="Index" class="btn btn-primary">Voltar para Lista</a>
+</div>
