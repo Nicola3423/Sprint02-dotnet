@@ -71,8 +71,4 @@ A escolha do padrão MVC em uma arquitetura monolítica se deve a:
 Foi utilizado o padrão Logger Manager para gerenciar os logs da aplicação. Este padrão centraliza a criação de logs, permitindo monitorar e depurar a aplicação de forma eficiente. O Logger Manager garante que os logs sejam registrados de forma consistente e com alta performance, além de possibilitar configurações para diferentes níveis de log (informação, erro, etc.).
 
 ### Configuração da Documentação da API (Swagger/OpenAPI)
-A documentação da API foi configurada utilizando Swagger/OpenAPI, permitindo que os desenvolvedores e usuários da API possam visualizar de forma clara e detalhada todos os endpoints disponíveis, bem como as entradas e saídas esperadas de cada um. A documentação inclui:
-- Descrição dos endpoints
-- Exemplos de requisições e respostas
-- Modelos de dados (Pacientes, Médicos)
-- Códigos de status de resposta
+A documentação da API foi configurada utilizando Swagger/OpenAPI, permitindo que os desenvolvedores e usuários da API possam visualizar de forma clara e detalhada todos os endpoints disponíveis, bem como as entradas e saídas esperadas de cada um. 
