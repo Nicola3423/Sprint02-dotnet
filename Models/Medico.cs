@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sessions_app.Models
 {
-    [Table("PACIENTE")]
-    public class Paciente
+    [Table("MEDICO")]
+    public class Medico
     {
         [Key]
-        [Column("ID_PACIENTE")]
-        public int IdPaciente { get; set; }
+        [Column("ID_MEDICO")]
+        public int IdMedico { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório")]
         [StringLength(255, ErrorMessage = "O nome deve ter no máximo 255 caracteres")]
@@ -26,8 +26,9 @@ namespace Sessions_app.Models
         [Column("EMAIL")]
         public string Email { get; set; }
 
-        [DataType(DataType.Date)]
-        [Column("DATA_NASCIMENTO")]
-        public DateTime? DataNascimento { get; set; }
+        [Required(ErrorMessage = "O CRM é obrigatório")]
+        [StringLength(15, ErrorMessage = "O CRM deve ter no máximo 15 caracteres")]
+        [Column("CRM")]
+        public string CRM { get; set; }
     }
 }

@@ -2,49 +2,49 @@
 using System.Threading.Tasks;
 using Sessions_app.Models;
 using Sessions_app.Data;
-using Sessions_app.DTOs;
-using AutoMapper; // Usaremos o AutoMapper para mapeamento de objetos
+using AutoMapper;
+using Sessions_app.Patterns; // Usaremos o AutoMapper para mapeamento de objetos
 
 namespace Sessions_app.Services
 {
     public class PacienteService
     {
-        private readonly IPacienteRepository _pacienteRepository;
-        private readonly IMapper _mapper;
+        private readonly IPacienteRepository _repository;
+        private readonly LoggerManager _logger = LoggerManager.GetInstance();
 
-        public PacienteService(IPacienteRepository pacienteRepository, IMapper mapper)
+        public PacienteService(IPacienteRepository repository)
         {
-            _pacienteRepository = pacienteRepository;
-            _mapper = mapper;
+            _repository = repository;
         }
 
-        public async Task<IEnumerable<PacienteDTO>> GetAllPacientesAsync()
+        public async Task<IEnumerable<Paciente>> GetAllPacientesAsync()
         {
-            var pacientes = await _pacienteRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<PacienteDTO>>(pacientes);
+            _logger.LogInfo("Serviço: Buscando todos os pacientes");
+            return await _repository.GetAllAsync();
         }
 
-        public async Task<PacienteDTO> GetPacienteByIdAsync(int id)
+        public async Task<Paciente> GetPacienteByIdAsync(int id)
         {
-            var paciente = await _pacienteRepository.GetByIdAsync(id);
-            return _mapper.Map<PacienteDTO>(paciente);
+            _logger.LogInfo($"Serviço: Buscando paciente ID: {id}");
+            return await _repository.GetByIdAsync(id);
         }
 
-        public async Task AddPacienteAsync(PacienteDTO pacienteDto)
+        public async Task<Paciente> CreatePacienteAsync(Paciente paciente)
         {
-            var paciente = _mapper.Map<Paciente>(pacienteDto);
-            await _pacienteRepository.AddAsync(paciente);
+            _logger.LogInfo($"Serviço: Criando paciente: {paciente.Nome}");
+            return await _repository.CreateAsync(paciente);
         }
 
-        public async Task UpdatePacienteAsync(PacienteDTO pacienteDto)
+        public async Task<Paciente> UpdatePacienteAsync(Paciente paciente)
         {
-            var paciente = _mapper.Map<Paciente>(pacienteDto);
-            await _pacienteRepository.UpdateAsync(paciente);
+            _logger.LogInfo($"Serviço: Atualizando paciente ID: {paciente.IdPaciente}");
+            return await _repository.UpdateAsync(paciente);
         }
 
-        public async Task DeletePacienteAsync(int id)
+        public async Task<bool> DeletePacienteAsync(int id)
         {
-            await _pacienteRepository.DeleteAsync(id);
+            _logger.LogInfo($"Serviço: Excluindo paciente ID: {id}");
+            return await _repository.DeleteAsync(id);
         }
     }
 }

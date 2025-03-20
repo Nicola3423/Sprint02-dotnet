@@ -8,8 +8,8 @@ namespace Sessions_app.Data
     {
         Task<IEnumerable<Paciente>> GetAllAsync();
         Task<Paciente> GetByIdAsync(int id);
-        Task AddAsync(Paciente paciente);
-        Task UpdateAsync(Paciente paciente);
-        Task DeleteAsync(int id);
+        Task<Paciente> CreateAsync(Paciente paciente);
+        Task<Paciente> UpdateAsync(Paciente paciente);
+        Task<bool> DeleteAsync(int id);
     }
 }

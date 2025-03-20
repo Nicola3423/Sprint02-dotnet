@@ -1,4 +1,4 @@
-﻿@model Sessions_app.DTOs.PacienteDTO
+﻿@model Sessions_app.Models.Paciente
 
 <div class="container mt-4">
     <h2>Detalhes do Paciente</h2>
@@ -6,11 +6,15 @@
     <table class="table table-bordered">
         <tr>
             <th>ID</th>
-            <td>@Model.Id</td>
+            <td>@Model.IdPaciente</td>
         </tr>
         <tr>
             <th>Nome</th>
             <td>@Model.Nome</td>
+        </tr>
+        <tr>
+            <th>Telefone</th>
+            <td>@Model.Telefone</td>
         </tr>
         <tr>
             <th>Email</th>
@@ -18,7 +22,7 @@
         </tr>
         <tr>
             <th>Data de Nascimento</th>
-            <td>@Model.DataNascimento.ToShortDateString()</td>
+            <td>@Model.DataNascimento</td>
         </tr>
     </table>
 

@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Sessions_app.Models;
+using Sessions_app.Patterns;
 
 namespace Sessions_app.Data
 {
     public class PacienteRepository : IPacienteRepository
     {
         private readonly DataContext _context;
+        private readonly LoggerManager _logger = LoggerManager.GetInstance();
 
         public PacienteRepository(DataContext context)
         {
@@ -24,28 +26,31 @@ namespace Sessions_app.Data
             return await _context.Pacientes.FindAsync(id);
         }
 
-        public async Task AddAsync(Paciente paciente)
+        public async Task<Paciente> CreateAsync(Paciente paciente)
         {
             await _context.Pacientes.AddAsync(paciente);
             await _context.SaveChangesAsync();
+            return paciente;
         }
 
-
-        public async Task UpdateAsync(Paciente paciente)
+        public async Task<Paciente> UpdateAsync(Paciente paciente)
         {
             _context.Pacientes.Update(paciente);
             await _context.SaveChangesAsync();
+            return paciente;
         }
 
-        
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var paciente = await _context.Pacientes.FindAsync(id);
             if (paciente != null)
             {
                 _context.Pacientes.Remove(paciente);
                 await _context.SaveChangesAsync();
+                return true;
             }
+            return false;
         }
     }
 }
+
