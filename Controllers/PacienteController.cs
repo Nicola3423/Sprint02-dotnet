@@ -2,6 +2,9 @@
 using Sessions_app.Services;
 using Sessions_app.Models;
 using Sessions_app.Patterns;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
+
 
 public class PacienteController : Controller
 {

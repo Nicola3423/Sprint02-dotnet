@@ -4,11 +4,33 @@ using Sessions_app.Service;
 using Sessions_app.Services;
 using Sessions_app.Models;
 using Sessions_app.Repositories;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
+
+// Add Swagger configuration
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Sistema de Gestão de Pacientes e Médicos Odontologica",
+        Version = "v1",
+        Description = "API para gerenciamento de pacientes e médicos Odontologica"
+    });
+
+    // Habilitar anotações Swagger
+    c.EnableAnnotations();
+
+    // Inclui os controllers MVC no Swagger
+    c.TagActionsBy(api => new[] { api.GroupName ?? api.ActionDescriptor.RouteValues["controller"] });
+
+    // Filtra quais controllers e actions devem aparecer no Swagger
+    c.DocInclusionPredicate((docName, api) => true);
+});
 
 // Add session configuration
 builder.Services.AddDistributedMemoryCache();
@@ -39,6 +61,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+
+    // Configure Swagger UI
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema de Gestão v1");
+        c.RoutePrefix = "swagger";
+        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+        c.DefaultModelsExpandDepth(-1);
+        c.DisplayRequestDuration();
+    });
 }
 else
 {
@@ -56,7 +89,6 @@ app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.MapControllerRoute(
     name: "customRoute",
     pattern: "{controller=Paciente}/{action=Index}/{id?}");
